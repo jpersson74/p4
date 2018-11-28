@@ -11,9 +11,7 @@
 |
 */
 
-
 Route::get('/debug', function () {
-
     $debug = [
         'Environment' => App::environment(),
     ];
@@ -32,21 +30,24 @@ Route::get('/debug', function () {
         $debug['Database connection test'] = 'PASSED';
         $debug['Databases'] = array_column($databases, 'Database');
     } catch (Exception $e) {
-        $debug['Database connection test'] = 'FAILED: '.$e->getMessage();
+        $debug['Database connection test'] = 'FAILED: ' . $e->getMessage();
     }
 
     dump($debug);
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Main controller route
+Route::get('/', 'ProjectController@index');
+
+//Data controller route
+Route::get('/data', 'ProjectController@data');
+
+//Search controller route
+Route::get('/search', 'ProjectController@search');
 
 //Post Route for data entry
 Route::post('/enter-data', 'ProjectController@enterData');
 
-//Main controller route
-Route::get('/', 'ProjectController@index');
-
 //Route for project search
 Route::get('/search-process', 'ProjectController@searchProcess');
+

@@ -8,20 +8,33 @@ class ProjectController extends Controller
 {
 //Main controller
 
-    public function index(Request $request)
+    public function index()
     {
-        return view('project.index')->with([
+        return view('project.index');
+
+    }
+
+    public function data(Request $request)
+    {
+        return view('project.data');
+    }
+
+    public function search(Request $request)
+    {
+        return view('project.search')->with([
             'projSearch' => $request->session()->get('projSearch', ''),
 
             'searchResults' => $request->session()->get('searchResults', []),
         ]);
     }
 
+
 //Search controller
 
     public function searchProcess(Request $request)
 
     {
+
         $searchResults = [];
 
         $projSearch = $request->input('projSearch', null);
@@ -66,6 +79,7 @@ class ProjectController extends Controller
     public function enterData(Request $request)
     {
 
+
 //Validates the form fields
 
         $request->validate([
@@ -73,7 +87,8 @@ class ProjectController extends Controller
             'projID' => 'regex:/^\d{2}[P]-.*$/',
             'projYear' => 'required',
             'projType' => 'required',
-            'projLoc' => 'required'
+            'projLoc' => 'required',
+            'projState' => 'required'
         ]);
 
 //Creates the data array from filled in fields after verification
@@ -83,7 +98,8 @@ class ProjectController extends Controller
             'ProjectID' => $request['projID'],
             'Year' => $request['projYear'],
             'ProjectType' => $request['projType'],
-            'Location' => $request['projLoc']
+            'Location' => $request['projLoc'],
+            'State' => $request['projState']
         ];
 
 //Gets any existing JSON data from file

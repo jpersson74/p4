@@ -1,12 +1,35 @@
 body {
-    background-color: #FFFFE0;
+    background-color: #A9A9A9;
+}
+
+header {
+    background-image: url("/images/Eastham1.jpg");
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 
 }
 
 h1 {
-    color: #000000;
+    color: #FFFFFF;
     text-align: center;
     font-family: Tahoma, Geneva, sans-serif;
+    font-size: 40px;
+}
+
+h1 a {
+
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+h1 a:hover {
+
+    background-color: red;
+}
+
+header img {
+    padding-top: 15px;
+
 }
 
 h3 {
@@ -20,6 +43,7 @@ p {
     text-align: center;
     font-family: Tahoma, Geneva, sans-serif;
     font-style: italic;
+    font-size: 20px;
 }
 
 legend {
@@ -74,4 +98,32 @@ footer {
     font-style: italic;
     text-align: center;
 
+}
+
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    display: inline-block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    font-size: 20px;
+    font-style: italic;
+    background-color: #000000
+}
+
+li a:hover {
+    background-color: red;
 }
