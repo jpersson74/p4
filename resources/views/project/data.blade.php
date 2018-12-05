@@ -71,11 +71,11 @@
         <br>
         <fieldset>
             <legend>Location:</legend>
-            <label for='projLoc'>Project Location:</label>
+            <label for='projCity'>Project City: </label>
             <input type='text'
-                   id='projLoc'
-                   name='projLoc'
-                   placeholder='Example: Providence, RI'
+                   id='projCity'
+                   name='projCity'
+                   placeholder='Example: Providence'
                    value='{{ old('projLoc') }}'>
 
 
@@ -144,6 +144,23 @@
             @endif
         </fieldset>
         <br>
+        <br>
+        <fieldset>
+            <legend>Upload associated files:</legend>
+            <label for='abgps'>ABGPS:</label>
+            <input type='file' id='abgps' name='abgps'>
+            <br>
+            <br>
+            <label for='kml'>KML:</label>
+            <input type='file' id='kml' name='kml'>
+            <br>
+            <br>
+            <label for='calibration'>Camera Calibration:</label>
+            <input type='file' id='calibration' name='calibration'>
+        </fieldset>
+
+        <br>
+
         <input type='submit' name='save' value='Enter data'>
         <br>
         <br>

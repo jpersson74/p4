@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
 
 class ProjectController extends Controller
 {
@@ -11,7 +12,6 @@ class ProjectController extends Controller
     public function index()
     {
         return view('project.index');
-
     }
 
     public function data(Request $request)
@@ -28,13 +28,11 @@ class ProjectController extends Controller
         ]);
     }
 
-
 //Search controller
 
     public function searchProcess(Request $request)
 
     {
-
         $searchResults = [];
 
         $projSearch = $request->input('projSearch', null);
@@ -49,12 +47,9 @@ class ProjectController extends Controller
 //If there is a search term the following executes
 
         if ($projSearch) {
+//Gets existing data from Project model
 
-//Gets existing data from JSON
-
-            $projectsJSON = file_get_contents(database_path('/projects.json'));
-
-            $data = json_decode($projectsJSON, true);
+            $data = Project::where('ProjectID', '=', "$projSearch")->get();
 
 //Loops through array to search for data
 
@@ -67,7 +62,7 @@ class ProjectController extends Controller
 
 //Returns requested data back to page
 
-        return redirect('/')->with([
+        return redirect('/search')->with([
             'projSearch' => $projSearch,
 
             'searchResults' => $searchResults
@@ -77,9 +72,8 @@ class ProjectController extends Controller
 //Data entry controller
 
     public function enterData(Request $request)
+
     {
-
-
 //Validates the form fields
 
         $request->validate([
@@ -87,40 +81,19 @@ class ProjectController extends Controller
             'projID' => 'regex:/^\d{2}[P]-.*$/',
             'projYear' => 'required',
             'projType' => 'required',
-            'projLoc' => 'required',
+            'projCity' => 'required',
             'projState' => 'required'
         ]);
 
-//Creates the data array from filled in fields after verification
+//Writes to database
 
-        $data = [
-
-            'ProjectID' => $request['projID'],
-            'Year' => $request['projYear'],
-            'ProjectType' => $request['projType'],
-            'Location' => $request['projLoc'],
-            'State' => $request['projState']
-        ];
-
-//Gets any existing JSON data from file
-
-        $dataToJSON = file_get_contents(database_path('/projects.json'));
-
-//Decodes JSON into array
-
-        $dataArr = json_decode($dataToJSON, true);
-
-//Writes to array
-
-        $dataArr[] = $data;
-
-//Writes to JSON
-
-        $json = json_encode($dataArr, JSON_PRETTY_PRINT);
-
-//Adds new data to JSON file
-
-        file_put_contents(database_path('/projects.json'), $json);
+        $project = new Project();
+        $project->ProjectID = $request->input('projID');
+        $project->Year = $request->input('projYear');
+        $project->ProjectType = $request->input('projType');
+        $project->City = $request->input('projCity');
+        $project->State = $request->input('projState');
+        $project->save();
 
 //Writes success message back to page
 
