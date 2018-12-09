@@ -136,7 +136,7 @@
             </select>
 
             @if($errors->get('projLoc'))
-                <div class='error'>{{ $errors->first('projLoc') }}</div>
+                <div class='error'>{{ $errors->first('projCity') }}</div>
             @endif
 
             @if($errors->get('projState'))

@@ -33,15 +33,13 @@ class ProjectController extends Controller
     public function searchProcess(Request $request)
 
     {
-        $searchResults = [];
-
         $projSearch = $request->input('projSearch', null);
 
 //Validates the search term with a RegEx
 
         $request->validate([
 
-            'projSearch' => 'regex:/^\d{2}[P]-.*$/'
+            'projSearch' => 'required'
         ]);
 
 //If there is a search term the following executes
@@ -49,24 +47,19 @@ class ProjectController extends Controller
         if ($projSearch) {
 //Gets existing data from Project model
 
-            $data = Project::where('ProjectID', '=', "$projSearch")->get();
+            $projects = Project::Where('ProjectID', 'LIKE', '%' . $projSearch . '%')
+                ->orWhere('Year', '=', "$projSearch")
+                ->orWhere('ProjectType', '=', "$projSearch")
+                ->orWhere('City', '=', "$projSearch")
+                ->orWhere('State', '=', "$projSearch")
+                ->get();
 
-//Loops through array to search for data
+            return view('project.search')->with([
+                'projects' => $projects,
+                'projSearch' => $projSearch,
 
-            foreach ($data as $projectID => $project) {
-                if ($project['ProjectID'] == $projSearch) {
-                    $searchResults[$projectID] = $project;
-                }
-            }
+            ]);
         }
-
-//Returns requested data back to page
-
-        return redirect('/search')->with([
-            'projSearch' => $projSearch,
-
-            'searchResults' => $searchResults
-        ]);
     }
 
 //Data entry controller
