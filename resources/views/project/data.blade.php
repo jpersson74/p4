@@ -143,21 +143,7 @@
                 <div class='error'>{{ $errors->first('projState') }}</div>
             @endif
         </fieldset>
-        <br>
-        <br>
-        <fieldset>
-            <legend>Upload associated files:</legend>
-            <label for='abgps'>ABGPS:</label>
-            <input type='file' id='abgps' name='abgps'>
-            <br>
-            <br>
-            <label for='kml'>KML:</label>
-            <input type='file' id='kml' name='kml'>
-            <br>
-            <br>
-            <label for='calibration'>Camera Calibration:</label>
-            <input type='file' id='calibration' name='calibration'>
-        </fieldset>
+
 
         <br>
 

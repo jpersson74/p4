@@ -47,7 +47,9 @@
                         <th>Year</th>
                         <th>Type</th>
                         <th>City</th>
-                        <th>State</th>
+                        <th>State
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     @foreach($projects as $project)
                         <tr>
@@ -56,6 +58,8 @@
                             <td>{{$project['ProjectType']}}</td>
                             <td>{{$project['City']}}</td>
                             <td>{{$project['State']}}</td>
+                            <td><a href='/{{ $project->id }}/edit'>Edit</a></td>
+                            <td><a href='/delete/{{ $project->id }}'>Delete</a></td>
                         </tr>
                     @endforeach
                 </table>

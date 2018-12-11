@@ -51,3 +51,15 @@ Route::post('/enter-data', 'ProjectController@enterData');
 //Route for project search
 Route::get('/search-process', 'ProjectController@searchProcess');
 
+# EDIT
+# Show the form to edit a specific book
+Route::get('/{id}/edit', 'ProjectController@edit');
+# Process the form to edit a specific book
+Route::put('/update/{id}', 'ProjectController@update');
+
+# DELETE
+# Show the page to confirm deletion of a book
+Route::get('/{id}/delete', 'BookController@delete');
+# Process the deletion of a book
+Route::delete('/{id}', 'BookController@destroy');
+

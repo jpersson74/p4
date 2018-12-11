@@ -93,4 +93,40 @@ class ProjectController extends Controller
         return redirect()->back()->with('success', 'Thanks for submitting!');
     }
 
+    /*
+* GET /books/{id}/edit
+*/
+    public function edit($id)
+    {
+        $project = Project::find($id);
+
+        return view('project.edit')->with([
+            'project' => $project,
+
+        ]);
+    }
+
+    /*
+    * PUT /books/{id}
+    */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'projID' => 'regex:/^\d{2}[P]-.*$/',
+            'projYear' => 'required',
+            'projType' => 'required',
+            'projCity' => 'required',
+            'projState' => 'required'
+        ]);
+        $project = Project::find($id);
+        $project->ProjectID = $request->projID;
+        $project->Year = $request->projYear;
+        $project->ProjectType = $request->projType;
+        $project->City = $request->projCity;
+        $project->State = $request->projState;
+        $project->save();
+
+        return redirect()->back()->with('success', 'Your changes have been saved!');
+    }
+
 }
