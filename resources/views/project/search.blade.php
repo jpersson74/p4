@@ -5,7 +5,11 @@
 @endsection
 
 @section('content')
-
+    @if (\Session::has('success'))
+        <div class="noError">
+            {!! \Session::get('success') !!}
+        </div>
+    @endif
     <!-- Creates search form -->
 
     <form method='GET' action='/search-process'>
@@ -27,7 +31,7 @@
             @endif
         </fieldset>
         <br>
-        <input type='submit' name='search' value='Search Projects'>
+        <input type='submit' name='search' value='Search Projects' id='search'>
         <br>
     </form>
 
@@ -42,6 +46,7 @@
             <div class='projectResults'>
                 <table>
                     <caption>Search Results:</caption>
+                    <br>
                     <tr>
                         <th>Project</th>
                         <th>Year</th>
@@ -59,7 +64,7 @@
                             <td>{{$project['City']}}</td>
                             <td>{{$project['State']}}</td>
                             <td><a href='/{{ $project->id }}/edit'>Edit</a></td>
-                            <td><a href='/delete/{{ $project->id }}'>Delete</a></td>
+                            <td><a href='/{{ $project->id }}/delete'>Delete</a></td>
                         </tr>
                     @endforeach
                 </table>
@@ -68,5 +73,6 @@
 
         @endif
     @endif
+
 
 @endsection

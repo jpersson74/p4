@@ -57,18 +57,20 @@
         <br>
         <fieldset>
             <legend>Please edit project discipline:</legend>
+            <input type='radio' name='projType' id='pd1'
+                   value="Photogrammetry" {{(old('projType', $project->ProjectType) == 'Photogrammetry') ? 'checked' : ''}}><label for=    'pd1'>Photogrammetry</label><br>
             <input type='radio'
                    name='projType'
-                   value="Photogrammetry" {{(old('projType', $project->ProjectType) == 'Photogrammetry') ? 'checked' : ''}}>Photogrammetry<br>
+                   id='pd2'
+                   value="Survey" {{(old('projType', $project->ProjectType) == 'Survey') ? 'checked' : ''}}><label for= 'pd2'>Survey</label><br>
             <input type='radio'
                    name='projType'
-                   value="Survey" {{(old('projType', $project->ProjectType) == 'Survey') ? 'checked' : ''}}>Survey<br>
+                   id='pd3'
+                   value="GIS" {{(old('projType', $project->ProjectType) == 'GIS') ? 'checked' : ''}}><label for='pd3'>GIS</label><br>
             <input type='radio'
                    name='projType'
-                   value="GIS" {{(old('projType', $project->ProjectType) == 'GIS') ? 'checked' : ''}}>GIS<br>
-            <input type='radio'
-                   name='projType'
-                   value="Laser Scanning" {{(old('projType', $project->ProjectType) == 'Laser Scanning') ? 'checked' : ''}}>Laser Scanning<br>
+                   id='pd4'
+                   value="Laser Scanning" {{(old('projType', $project->ProjectType) == 'Laser Scanning') ? 'checked' : ''}}><label for='pd4'>Laser      Scanning</label><br>
             @if($errors->get('projType'))
                 <div class='error'>{{ $errors->first('projType') }}</div>
             @endif
@@ -152,14 +154,14 @@
         <br>
 
 
-        <input type='submit' name='save' value='Update project'>
+        <input type='submit' name='save' value='Update project' id='update'>
         <br>
         <br>
 
         <!-- Displays success message upon form validation and submission -->
 
         @if (\Session::has('success'))
-            <div class="noError">
+            <div class="noError" id='success'>
                 {!! \Session::get('success') !!}
             </div>
         @endif

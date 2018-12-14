@@ -6,9 +6,15 @@
 
 @section('content')
 
+    @if (\Session::has('success'))
+        <div class="noError" id='success'>
+            {!! \Session::get('success') !!}
+        </div>
+    @endif
+
     <!-- Creates entry form -->
 
-    <form method='POST' action='/enter-data'>
+    <form method='POST' enctype='multipart/form-data'  action='/enter-data'>
         {{ csrf_field() }}
 
 
@@ -55,15 +61,17 @@
         </fieldset>
         <br>
         <fieldset>
-            <legend>Please select all that apply:</legend>
+            <legend>Please select a project discipline:</legend>
             <input type='radio'
                    name='projType'
-                   value="Photogrammetry" {{(old('projType') == 'Photogrammetry') ? 'checked' : ''}}>Photogrammetry<br>
-            <input type='radio' name='projType' value="Survey" {{(old('projType') == 'Survey') ? 'checked' : ''}}>Survey<br>
-            <input type='radio' name='projType' value="GIS" {{(old('projType') == 'GIS') ? 'checked' : ''}}>GIS<br>
+                   id='pd1'
+                   value="Photogrammetry" {{(old('projType') == 'Photogrammetry') ? 'checked' : ''}}><label for='pd1'>Photogrammetry</label><br>
+            <input type='radio' name='projType' id='pd2' value="Survey" {{(old('projType') == 'Survey') ? 'checked' : ''}}><label for='pd2'>Survey</label><br>
+            <input type='radio' name='projType' id='pd3' value="GIS" {{(old('projType') == 'GIS') ? 'checked' : ''}}><label for='pd3'>GIS</label><br>
             <input type='radio'
                    name='projType'
-                   value="Laser Scanning" {{(old('projType') == 'Laser Scanning') ? 'checked' : ''}}>Laser Scanning<br>
+                   id='pd4'
+                   value="Laser Scanning" {{(old('projType') == 'Laser Scanning') ? 'checked' : ''}}><label for='pd4'>Laser Scanning</label><br>
             @if($errors->get('projType'))
                 <div class='error'>{{ $errors->first('projType') }}</div>
             @endif
@@ -143,23 +151,31 @@
                 <div class='error'>{{ $errors->first('projState') }}</div>
             @endif
         </fieldset>
-
-
         <br>
+        <fieldset>
+            <legend>Upload associated files:</legend>
+            <label for='abgps'>ABGPS:</label>
+            <input type='file' id='abgps' name='abgps'>
+            <br>
+            <br>
+            <label for='kml'>KML:</label>
+            <input type='file' id='kml' name='kml'>
+            <br>
+            <br>
+            <label for='calibration'>Camera Calibration:</label>
+            <input type='file' id='calibration' name='calibration'>
+        </fieldset>
 
-        <input type='submit' name='save' value='Enter data'>
+        <input type='submit' name='save' value='Enter data' id='enter'>
         <br>
         <br>
+    </form>
 
         <!-- Displays success message upon form validation and submission -->
 
-        @if (\Session::has('success'))
-            <div class="noError">
-                {!! \Session::get('success') !!}
-            </div>
-        @endif
+
         <br>
 
-    </form>
+
 
 @endsection

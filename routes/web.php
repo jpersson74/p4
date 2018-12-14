@@ -59,7 +59,7 @@ Route::put('/update/{id}', 'ProjectController@update');
 
 # DELETE
 # Show the page to confirm deletion of a book
-Route::get('/{id}/delete', 'BookController@delete');
+Route::get('/{id}/delete', 'ProjectController@delete');
 # Process the deletion of a book
-Route::delete('/{id}', 'BookController@destroy');
+Route::delete('/destroy/{id}', 'ProjectController@destroy');
 

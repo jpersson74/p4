@@ -56,6 +56,7 @@ legend {
 fieldset {
 
     border: 1px #C1C1C1 thick;
+    margin:auto;
 
 }
 
@@ -76,10 +77,7 @@ img {
 }
 
 .noError {
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 16px;
-    font-style: italic;
-    color: green;
+
 }
 
 footer {
@@ -140,10 +138,117 @@ table, td {
     color: black;
 }
 
-table, caption {
+table,caption {
     color: black;
     font-size: 20px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 
+}
+
+td a{
+    text-decoration: none;
+    color: blue;
 
 }
+
+
+#delete
+{
+    background-color: #4CAF50;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+#return
+{
+    background-color: #FF0000;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+#update
+{
+    background-color: #4CAF50;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+#enter
+{
+    background-color: #4CAF50;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+#search
+{
+    background-color: #4CAF50;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+
+
+#success
+{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    width:100%;
+    font-size: 22px;
+    font-style: italic;
+    color: #4CAF50;
+    background-color: white;
+    text-align: center;
+}
+
+label{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: bold;
+
+}
+
+form
+{
+    text-align: center;
+}
+

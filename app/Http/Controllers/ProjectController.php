@@ -88,9 +88,23 @@ class ProjectController extends Controller
         $project->State = $request->input('projState');
         $project->save();
 
+        $files =[];
+        if ($request->file('abgps')) $files[] = $request->file('abgps');
+        if ($request->file('kml')) $files[] = $request->file('kml');
+        if ($request->file('calibration')) $files[] = $request->file('calibration');
+        foreach ($files as $file)
+        {
+            if(!empty($file)){
+                $destinationPath = public_path() . '/uploads';
+                $filename = $file->getClientOriginalName();
+                $file->move($destinationPath, $filename);
+            }
+
+        }
+
 //Writes success message back to page
 
-        return redirect()->back()->with('success', 'Thanks for submitting!');
+        return redirect()->back()->with('success', 'Project ' . $project->ProjectID . ' was added.');
     }
 
     /*
@@ -128,5 +142,33 @@ class ProjectController extends Controller
 
         return redirect()->back()->with('success', 'Your changes have been saved!');
     }
+
+    public function delete($id)
+    {
+        $project = Project::find($id);
+        if (!$project) {
+            return redirect('/search')->with('alert', 'Project not found');
+        }
+
+        return view('project.delete')->with([
+            'project' => $project,
+        ]);
+    }
+
+    /*
+    * Actually deletes the book
+    * DELETE /books/{id}/delete
+    */
+    public function destroy($id)
+    {
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect()->back()->with('success', 'Project' . $project->ProjectID . 'was deleted');
+
+    }
+
+
+
 
 }
