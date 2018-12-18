@@ -3,46 +3,44 @@
 + Production URL: <http://p4.shua-page.com>
 
 ## Database
-*The following is example info taken from Foobooks; delete and replace with your own info.*
 
 Primary tables:
-  + `books`
-  + `authors`
-  + `tags`
-  + `users`
+  + `projects`
+  + `uploads`
   
-Pivot table(s):
-  + `book_tag`
+Pivot table:
+  + `project_upload`
 
 
 ## CRUD
-*Describe what action I need take in order to see an example of all 4 CRUD operations in your app. I've filled this out with examples from the Foobooks app - delete this and replace with your own info. If one operation is performed multiple times (e.g. Read), you only need to provide 1 example.*
 
 __Create__
-  + Visit <http://p4.foobooks.me/books/create>
-  + Fill out form
-  + Click *Add new book*
-  + Observe confirmation message
+  + Visit <http://p4.shua-page.com/data>
+  + Fill out form.
+  + Click *Enter Data*.
+  + Observe confirmation message.
   
 __Read__
-  + Visit <http://p4.foobooks.me/books> see a listing of all books
+  + Visit <http://p4.shua-page.com/search> 
+  + Search by partial project name, project type, City or State.
   
 __Update__
-  + Visit <http://p4.foobooks.me/books>; choose the Edit button next to one of the books
-  + Make some edit to form
-  + Click *Save changes*
-  + Observe confirmation message
+  + Visit <http://p4.shua-page.com/search>
+  + Search for a Project.
+  + Click edit to the right of the project listing in table row for project.
+  + Complete form.
+  + Click Update Project.
+  + Observe confirmation.
   
 __Delete__
-  + Visit <http://p4.foobooks.me/books>; choose the Delete button next to one of the books
-  + Confirm deletion
-  + Observe confirmation message
+  + Visit <http://p4.shua-page.com/search>
+  + Search for a Project
+  + Click the delete link to the right of the project listing in table row for project.
+  + Choose to delete or go back to Search.
+  + If deleted, observe confirmation.
 
 ## Outside resources
-*Your list of outside resources go here*
+
 
 ## Code style divergences
-*List any divergences from PSR-1/PSR-2 and course guidelines on code style*
-
-## Notes for instructor
-*Any notes for me to refer to while grading; if none, omit this section*
+None.
