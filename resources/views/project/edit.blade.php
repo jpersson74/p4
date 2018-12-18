@@ -6,6 +6,12 @@
 
 @section('content')
 
+    @if (\Session::has('success'))
+        <div class="noError" id='success'>
+            {!! \Session::get('success') !!}
+        </div>
+    @endif
+
     <!-- Creates entry form -->
 
     <form method='POST' action='/update/{{$project->id}}'>
@@ -58,11 +64,12 @@
         <fieldset>
             <legend>Please edit project discipline:</legend>
             <input type='radio' name='projType' id='pd1'
-                   value="Photogrammetry" {{(old('projType', $project->ProjectType) == 'Photogrammetry') ? 'checked' : ''}}><label for=    'pd1'>Photogrammetry</label><br>
+                   value="Photogrammetry" {{(old('projType', $project->ProjectType) == 'Photogrammetry') ? 'checked' : ''}}><label
+                    for='pd1'>Photogrammetry</label><br>
             <input type='radio'
                    name='projType'
                    id='pd2'
-                   value="Survey" {{(old('projType', $project->ProjectType) == 'Survey') ? 'checked' : ''}}><label for= 'pd2'>Survey</label><br>
+                   value="Survey" {{(old('projType', $project->ProjectType) == 'Survey') ? 'checked' : ''}}><label for='pd2'>Survey</label><br>
             <input type='radio'
                    name='projType'
                    id='pd3'
@@ -70,7 +77,8 @@
             <input type='radio'
                    name='projType'
                    id='pd4'
-                   value="Laser Scanning" {{(old('projType', $project->ProjectType) == 'Laser Scanning') ? 'checked' : ''}}><label for='pd4'>Laser      Scanning</label><br>
+                   value="Laser Scanning" {{(old('projType', $project->ProjectType) == 'Laser Scanning') ? 'checked' : ''}}><label
+                    for='pd4'>Laser Scanning</label><br>
             @if($errors->get('projType'))
                 <div class='error'>{{ $errors->first('projType') }}</div>
             @endif
@@ -151,23 +159,21 @@
             @endif
         </fieldset>
         <br>
-        <br>
+        <fieldset>
+            <legend>Choose Camera Calibration:</legend>
+            <select name='projCalibration' id='projCalibration'>
+                <option value=''>Choose a calibration file:</option>
+                @foreach($files as $file)
+                    <option value='{{ $file->id }}' {{(old('projCalibration') == $file->id) ? 'selected' : '' }}>{{   $file->filename}}</option>
+                @endforeach
+            </select>
+        </fieldset>
 
 
         <input type='submit' name='save' value='Update project' id='update'>
         <br>
         <br>
 
-        <!-- Displays success message upon form validation and submission -->
-
-        @if (\Session::has('success'))
-            <div class="noError" id='success'>
-                {!! \Session::get('success') !!}
-            </div>
-        @endif
-
-
-        <br>
 
     </form>
 

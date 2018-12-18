@@ -5,11 +5,14 @@
 @endsection
 
 @section('content')
+
     @if (\Session::has('success'))
-        <div class="noError">
+        <div class="noError" id='success'>
             {!! \Session::get('success') !!}
         </div>
     @endif
+
+
     <!-- Creates search form -->
 
     <form method='GET' action='/search-process'>
@@ -52,9 +55,10 @@
                         <th>Year</th>
                         <th>Type</th>
                         <th>City</th>
-                        <th>State
+                        <th>State</th>
                         <th>Edit</th>
                         <th>Delete</th>
+
                     </tr>
                     @foreach($projects as $project)
                         <tr>

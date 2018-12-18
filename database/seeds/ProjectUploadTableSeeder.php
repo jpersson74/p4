@@ -17,9 +17,10 @@ class ProjectUploadTableSeeder extends Seeder
         # The *key* will be the book title, and the *value* will be an array of tags.
         # Note: purposefully omitting the Harry Potter books to demonstrate untagged books
         $projects =[
-            '12P-i55555' => ['WSP 09-3023.055 Control.kml','UC-Fp-1-20519084-f100_Rev03.00_V01.pdf','eo_KAS18PA200_1TA5_04222018_MASPMainland_USFt_NAD83(2011)_Epoch2018@90_Geoid12A_AppStd_Final.txt'],
-            '18P-i11111' => ['eo_KAS18PA200_1TA5_04222018_MASPMainland_USFt_NAD83(2011)_Epoch2018@90_Geoid12A_AppStd_Final.txt', 'UC-Fp-1-20519084-f100_Rev03.00_V01.pdf', '16N-i188720A Control.kml'],
-            '17P-i22222' => ['UC-E-1-50319383-f80-Rev03_V03.pdf', '16N-i188720A Control.kml', 'eo_KAS18PA147_98X2_04052018_MASPMainland_USFt_NAD83(2011)_Epoch2018@90_Geoid12A_AppStd_Final.txt']
+            '12P-i55555' => ['UC-E-1-50319383-f80-Rev03_V03.pdf'],
+            '18P-i11111' => ['UC-Fp-1-20519084-f100_Rev03.00_V01.pdf','UC-Fp-1-50616147-f100_Rev02.00_V02.pdf'],
+            '17P-i22222' => ['UC-Fp-1-50616147-f100_Rev02.00_V02.pdf'],
+            '09P-i99999' => ['UC-E-1-50319383-f80-Rev03_V03.pdf'],
         ];
 
         # Now loop through the above array, creating a new pivot for each book to tag

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\Upload;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,9 @@ class ProjectController extends Controller
 
     public function data(Request $request)
     {
-        return view('project.data');
+        $files = Upload::all();
+
+        return view('project.data')->with(compact('files'));
     }
 
     public function search(Request $request)
@@ -47,7 +50,7 @@ class ProjectController extends Controller
         if ($projSearch) {
 //Gets existing data from Project model
 
-            $projects = Project::Where('ProjectID', 'LIKE', '%' . $projSearch . '%')
+            $projects = Project::where('ProjectID', 'LIKE', '%' . $projSearch . '%')
                 ->orWhere('Year', '=', "$projSearch")
                 ->orWhere('ProjectType', '=', "$projSearch")
                 ->orWhere('City', '=', "$projSearch")
@@ -75,12 +78,14 @@ class ProjectController extends Controller
             'projYear' => 'required',
             'projType' => 'required',
             'projCity' => 'required',
-            'projState' => 'required'
+            'projState' => 'required',
+            'projCalibration' => 'required'
         ]);
 
 //Writes to database
 
         $project = new Project();
+
         $project->ProjectID = $request->input('projID');
         $project->Year = $request->input('projYear');
         $project->ProjectType = $request->input('projType');
@@ -88,19 +93,10 @@ class ProjectController extends Controller
         $project->State = $request->input('projState');
         $project->save();
 
-        $files =[];
-        if ($request->file('abgps')) $files[] = $request->file('abgps');
-        if ($request->file('kml')) $files[] = $request->file('kml');
-        if ($request->file('calibration')) $files[] = $request->file('calibration');
-        foreach ($files as $file)
-        {
-            if(!empty($file)){
-                $destinationPath = public_path() . '/uploads';
-                $filename = $file->getClientOriginalName();
-                $file->move($destinationPath, $filename);
-            }
+        $upload = new Upload();
+        $upload->id = $request->input('projCalibration');
 
-        }
+        $project->uploads()->attach($upload->id);
 
 //Writes success message back to page
 
@@ -114,8 +110,11 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
 
+        $files = Upload::all();
+
         return view('project.edit')->with([
             'project' => $project,
+            'files' => $files
 
         ]);
     }
@@ -140,6 +139,11 @@ class ProjectController extends Controller
         $project->State = $request->projState;
         $project->save();
 
+        $upload = new Upload();
+        $upload->id = $request->input('projCalibration[]');
+
+        $project->uploads()->sync($upload->id);
+
         return redirect()->back()->with('success', 'Your changes have been saved!');
     }
 
@@ -162,13 +166,12 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
+
+        $project->uploads()->detach();
+
         $project->delete();
 
-        return redirect()->back()->with('success', 'Project' . $project->ProjectID . 'was deleted');
-
+        return redirect('search')->with('success', 'Project' . $project->ProjectID . 'was deleted');
     }
-
-
-
 
 }

@@ -14,7 +14,7 @@
 
     <!-- Creates entry form -->
 
-    <form method='POST' enctype='multipart/form-data'  action='/enter-data'>
+    <form method='POST' enctype='multipart/form-data' action='/enter-data'>
         {{ csrf_field() }}
 
 
@@ -66,8 +66,14 @@
                    name='projType'
                    id='pd1'
                    value="Photogrammetry" {{(old('projType') == 'Photogrammetry') ? 'checked' : ''}}><label for='pd1'>Photogrammetry</label><br>
-            <input type='radio' name='projType' id='pd2' value="Survey" {{(old('projType') == 'Survey') ? 'checked' : ''}}><label for='pd2'>Survey</label><br>
-            <input type='radio' name='projType' id='pd3' value="GIS" {{(old('projType') == 'GIS') ? 'checked' : ''}}><label for='pd3'>GIS</label><br>
+            <input type='radio'
+                   name='projType'
+                   id='pd2'
+                   value="Survey" {{(old('projType') == 'Survey') ? 'checked' : ''}}><label for='pd2'>Survey</label><br>
+            <input type='radio'
+                   name='projType'
+                   id='pd3'
+                   value="GIS" {{(old('projType') == 'GIS') ? 'checked' : ''}}><label for='pd3'>GIS</label><br>
             <input type='radio'
                    name='projType'
                    id='pd4'
@@ -87,8 +93,8 @@
                    value='{{ old('projLoc') }}'>
 
 
-            <select name="projState" id="projState">
-                <option value="" selected="selected">Select a State</option>
+            <select name='projState' id='projState'>
+                <option value='' selected='selected'>Select a State</option>
                 <option value='AL'{{(old('projState') == 'AL') ? 'selected' : ''}}>Alabama</option>
                 <option value='AK'{{(old('projState') == 'AK') ? 'selected' : ''}}>Alaska</option>
                 <option value='AZ'{{(old('projState') == 'AZ') ? 'selected' : ''}}>Arizona</option>
@@ -153,17 +159,13 @@
         </fieldset>
         <br>
         <fieldset>
-            <legend>Upload associated files:</legend>
-            <label for='abgps'>ABGPS:</label>
-            <input type='file' id='abgps' name='abgps'>
-            <br>
-            <br>
-            <label for='kml'>KML:</label>
-            <input type='file' id='kml' name='kml'>
-            <br>
-            <br>
-            <label for='calibration'>Camera Calibration:</label>
-            <input type='file' id='calibration' name='calibration'>
+            <legend>Choose Camera Calibration:</legend>
+            <select name='projCalibration' id='projCalibration'>
+                <option value=''>Choose a calibration file:</option>
+                @foreach($files as $file)
+                    <option value='{{ $file->id }}' {{(old('projCalibration') == $file->id) ? 'selected' : '' }}>{{   $file->filename}}</option>
+                @endforeach
+            </select>
         </fieldset>
 
         <input type='submit' name='save' value='Enter data' id='enter'>
@@ -171,10 +173,10 @@
         <br>
     </form>
 
-        <!-- Displays success message upon form validation and submission -->
+    <!-- Displays success message upon form validation and submission -->
 
 
-        <br>
+    <br>
 
 
 
