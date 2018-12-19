@@ -148,12 +148,16 @@ return [
             'required' => 'You must select a project type.',
         ],
 
-        'projLoc' => [
+        'projCity' => [
             'required' => 'You must enter a project City.',
         ],
 
         'projState'=> [
             'required' => 'You must enter a project State.',
+        ],
+
+        'projCalibration'=> [
+            'required' => 'You must choose at least one calibration report.',
         ],
 
     ]

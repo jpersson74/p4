@@ -25,11 +25,7 @@
 </section>
 
 
-
-
 @stack('body')
-<footer>
-    &copy; WSP {{ date('Y') }}
-</footer>
+
 </body>
 </html>

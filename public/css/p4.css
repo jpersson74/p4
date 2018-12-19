@@ -1,5 +1,6 @@
 body {
     background-color: #A9A9A9;
+
 }
 
 header {
@@ -32,7 +33,6 @@ header img {
 
 }
 
-
 h2 {
     color: #000000;
     text-align: center;
@@ -63,7 +63,7 @@ legend {
 fieldset {
 
     border: 1px #C1C1C1 thick;
-    margin:auto;
+    margin: auto;
 
 }
 
@@ -74,8 +74,6 @@ img {
 
 }
 
-
-
 .error {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 16px;
@@ -84,18 +82,6 @@ img {
 }
 
 .noError {
-
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    padding: 1rem;
-    width: 100%;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 16px;
-    font-style: italic;
-    text-align: center;
 
 }
 
@@ -128,39 +114,40 @@ li a:hover {
 }
 
 table {
-    width:100%;
+    width: 100%;
 }
 
 table, tr:nth-child(even) {
     background-color: #eee;
 }
+
 table, tr:nth-child(odd) {
     background-color: #fff;
 }
+
 table, th {
     background-color: black;
     color: white;
 }
+
 table, td {
     color: black;
 }
 
-table,caption {
+table, caption {
     color: black;
     font-size: 20px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 
 }
 
-td a{
+td a {
     text-decoration: none;
     color: blue;
 
 }
 
-
-#delete
-{
+#delete {
     background-color: #4CAF50;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     border: none;
@@ -174,8 +161,7 @@ td a{
     cursor: pointer;
 }
 
-#return
-{
+#return {
     background-color: #FF0000;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     border: none;
@@ -189,8 +175,7 @@ td a{
     cursor: pointer;
 }
 
-#update
-{
+#update {
     background-color: #4CAF50;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     border: none;
@@ -204,8 +189,7 @@ td a{
     cursor: pointer;
 }
 
-#enter
-{
+#enter {
     background-color: #4CAF50;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     border: none;
@@ -219,8 +203,7 @@ td a{
     cursor: pointer;
 }
 
-#search
-{
+#search {
     background-color: #4CAF50;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     border: none;
@@ -234,12 +217,9 @@ td a{
     cursor: pointer;
 }
 
-
-
-#success
-{
+#success {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    width:100%;
+    width: 100%;
     font-size: 22px;
     font-style: italic;
     color: #4CAF50;
@@ -247,15 +227,14 @@ td a{
     text-align: center;
 }
 
-label{
+label {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 16px;
     font-style: bold;
 
 }
 
-form
-{
+form {
     text-align: center;
 }
 

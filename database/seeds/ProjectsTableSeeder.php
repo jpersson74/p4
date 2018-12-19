@@ -3,14 +3,9 @@
 use Illuminate\Database\Seeder;
 use App\Project;
 
-
 class ProjectsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $projects = [
@@ -21,8 +16,7 @@ class ProjectsTableSeeder extends Seeder
             ['09P-i99999', '2009', 'GIS', 'Burlington', 'VT'],
             ['04P-i44444', '2004', 'Photogrammetry', 'New York', 'NY'],
 
-
-];
+        ];
 
         $count = count($projects);
 

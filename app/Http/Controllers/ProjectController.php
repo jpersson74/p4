@@ -93,19 +93,17 @@ class ProjectController extends Controller
         $project->State = $request->input('projState');
         $project->save();
 
-        $upload = new Upload();
-        $upload->id = $request->input('projCalibration');
-
-        $project->uploads()->attach($upload->id);
+        foreach ($request->input('projCalibration') AS $projCalibration) {
+            $project->uploads()->attach($projCalibration);
+        }
 
 //Writes success message back to page
 
         return redirect()->back()->with('success', 'Project ' . $project->ProjectID . ' was added.');
     }
 
-    /*
-* GET /books/{id}/edit
-*/
+//Edit function
+
     public function edit($id)
     {
         $project = Project::find($id);
@@ -119,9 +117,8 @@ class ProjectController extends Controller
         ]);
     }
 
-    /*
-    * PUT /books/{id}
-    */
+//Updates data
+
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -129,7 +126,8 @@ class ProjectController extends Controller
             'projYear' => 'required',
             'projType' => 'required',
             'projCity' => 'required',
-            'projState' => 'required'
+            'projState' => 'required',
+            'projCalibration' => 'required'
         ]);
         $project = Project::find($id);
         $project->ProjectID = $request->projID;
@@ -139,13 +137,14 @@ class ProjectController extends Controller
         $project->State = $request->projState;
         $project->save();
 
-        $upload = new Upload();
-        $upload->id = $request->input('projCalibration[]');
+        foreach ($request->input('projCalibration') AS $projCalibration) {
+            $project->uploads()->attach($projCalibration);
+        }
 
-        $project->uploads()->sync($upload->id);
-
-        return redirect()->back()->with('success', 'Your changes have been saved!');
+        return redirect('/search')->with('success', 'Your changes have been saved!');
     }
+
+//Delete function
 
     public function delete($id)
     {
@@ -159,10 +158,8 @@ class ProjectController extends Controller
         ]);
     }
 
-    /*
-    * Actually deletes the book
-    * DELETE /books/{id}/delete
-    */
+    //Does the actual deleting
+
     public function destroy($id)
     {
         $project = Project::find($id);
@@ -171,7 +168,7 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect('search')->with('success', 'Project' . $project->ProjectID . 'was deleted');
+        return redirect('search')->with('success', 'Project ' . $project->ProjectID . ' was deleted');
     }
 
 }

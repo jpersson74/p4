@@ -161,12 +161,15 @@
         <br>
         <fieldset>
             <legend>Choose Camera Calibration:</legend>
-            <select name='projCalibration' id='projCalibration'>
+            <select name='projCalibration[]' id='projCalibration' multiple='multiple'>
                 <option value=''>Choose a calibration file:</option>
                 @foreach($files as $file)
-                    <option value='{{ $file->id }}' {{(old('projCalibration') == $file->id) ? 'selected' : '' }}>{{   $file->filename}}</option>
+                    <option value='{{$file->id}}' {{(collect(old('projCalibration')) ->contains ($file->id))? 'selected':''}}>{{    $file->filename}}</option>
                 @endforeach
             </select>
+            @if($errors->get('projCalibration'))
+                <div class='error'>{{ $errors->first('projCalibration') }}</div>
+            @endif
         </fieldset>
 
 
