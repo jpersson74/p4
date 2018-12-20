@@ -40,7 +40,12 @@ __Delete__
   + If deleted, observe confirmation.
 
 ## Outside resources
-
+  + Attaching multi-select data: <https://laracasts.com/discuss/channels/eloquent/sync-attach-multiselect-form-input>
+  <https://stackoverflow.com/questions/35611945/old-value-in-multiple-select-option-in-laravel-blade>
 
 ## Code style divergences
-None.
+  + None.
+
+## Notes
+  + Projects can have one or more camera calibration. Camera calibrations can belong to more than one project.
+
